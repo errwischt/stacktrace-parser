@@ -1,0 +1,22 @@
+{
+  "author": "Georg Tavonius <g.tavonius@gmail.com> (http://jaz-lounge.com)",
+  "name": "stacktrace-parser",
+  "description": "Parses every stack trace into a nicely formatted array of hashes.",
+  "version": "0.1.0",
+  "engines": {
+    "node": "~0.10"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*",
+    "expect.js": "*",
+    "grunt-cli": "~0.1.13",
+    "grunt": "~0.4.2",
+    "grunt-shell-spawn": "~0.3.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  }
+}
