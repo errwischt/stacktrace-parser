@@ -1,6 +1,6 @@
 # StackTrace-Parser
 
-This parser parses a stack trace from any browser and returns an array of hashes representing a line.
+This parser parses a stack trace from any browser or Node.js and returns an array of hashes representing a line.
 
 ## Usage
 

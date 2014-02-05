@@ -203,6 +203,42 @@ describe('StackTraceParser', function() {
             lineNumber: 4,
             column: 551 } ]
       }
+    ],
+    'Node.js': [
+      {
+        from: "ReferenceError: test is not defined\n    at repl:1:2\n    at REPLServer.self.eval (repl.js:110:21)\n    at Interface.<anonymous> (repl.js:239:12)\n    at Interface.EventEmitter.emit (events.js:95:17)\n    at emitKey (readline.js:1095:12)",
+        to: [ { file: 'repl',
+            methodName: '<unknown>',
+            lineNumber: 1,
+            column: 2 },
+          { file: 'repl.js',
+            methodName: 'REPLServer.self.eval',
+            lineNumber: 110,
+            column: 21 },
+          { file: 'repl.js',
+            methodName: 'Interface.<anonymous>',
+            lineNumber: 239,
+            column: 12 },
+          { file: 'events.js',
+            methodName: 'Interface.EventEmitter.emit',
+            lineNumber: 95,
+            column: 17 },
+          { file: 'readline.js',
+            methodName: 'emitKey',
+            lineNumber: 1095,
+            column: 12 } ]
+      },
+      {
+        from: "ReferenceError: breakDown is not defined\n    at null._onTimeout (repl:1:25)\n    at Timer.listOnTimeout [as ontimeout] (timers.js:110:15)",
+        to: [ { file: 'repl',
+            methodName: 'null._onTimeout',
+            lineNumber: 1,
+            column: 25 },
+          { file: 'timers.js',
+            methodName: 'Timer.listOnTimeout [as ontimeout]',
+            lineNumber: 110,
+            column: 15 } ]
+      }
     ]
   };
 
