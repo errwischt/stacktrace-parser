@@ -263,9 +263,11 @@ describe('StackTraceParser', function() {
             lineNumber: 110,
             column: 15 } ]
       },
-      // io.js 2.3.0
+    ],
+    'io.js': [
+      // io.js 2.4.0
       {
-        from: "ReferenceError: test is not defined\n    at repl:1:1\n    at REPLServer.defaultEval (repl.js:154:27)\n    at bound (domain.js:254:14)\n    at REPLServer.runBound [as eval] (domain.js:267:12)\n    at REPLServer.<anonymous> (repl.js:308:12)\n    at emitOne (events.js:77:13)\n    at REPLServer.emit (events.js:169:7)\n    at REPLServer.Interface._onLine (readline.js:209:10)\n    at REPLServer.Interface._line (readline.js:548:8)\n    at REPLServer.Interface._ttyWrite (readline.js:825:14)",
+        from: "ReferenceError: test is not defined\n    at repl:1:1\n    at REPLServer.defaultEval (repl.js:154:27)\n    at bound (domain.js:254:14)\n    at REPLServer.runBound [as eval] (domain.js:267:12)\n    at REPLServer.<anonymous> (repl.js:308:12)\n    at emitOne (events.js:77:13)\n    at REPLServer.emit (events.js:169:7)\n    at REPLServer.Interface._onLine (readline.js:210:10)\n    at REPLServer.Interface._line (readline.js:549:8)\n    at REPLServer.Interface._ttyWrite (readline.js:826:14)",
         to: [ { file: 'repl',
             methodName: '<unknown>',
             lineNumber: 1,
@@ -296,15 +298,15 @@ describe('StackTraceParser', function() {
             column: 7 },
           { file: 'readline.js',
             methodName: 'REPLServer.Interface._onLine',
-            lineNumber: 209,
+            lineNumber: 210,
             column: 10 },
           { file: 'readline.js',
             methodName: 'REPLServer.Interface._line',
-            lineNumber: 548,
+            lineNumber: 549,
             column: 8 },
           { file: 'readline.js',
             methodName: 'REPLServer.Interface._ttyWrite',
-            lineNumber: 825,
+            lineNumber: 826,
             column: 14 } ]
       },
     ]
