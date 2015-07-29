@@ -14,9 +14,17 @@ try {
 
 Every line contains four properties: `lineNumber`, `methodName`, `file` and `column` (if applicable).
 
+## TODOs
+
+- allow to run in browser (v0.2)
+
 ## Contribution
 
 If you want to contrib, then do you thing, write tests, run `grunt test` ensure that everything is green , commit and make the pull request. Or just write an issue, or let's talk.
+
+## Contributors
+
+- [James Ide](https://github.com/ide)
 
 ## LICENSE
 
