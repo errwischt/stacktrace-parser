@@ -2,7 +2,7 @@
   "author": "Georg Tavonius <g.tavonius@gmail.com> (http://jaz-lounge.com)",
   "name": "stacktrace-parser",
   "description": "Parses every stack trace into a nicely formatted array of hashes.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "engines": {
     "node": "0.10 - 2"
   },
