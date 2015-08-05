@@ -17,6 +17,7 @@ Every line contains four properties: `lineNumber`, `methodName`, `file` and `col
 ## TODOs
 
 - allow to run in browser (v0.2)
+- parse stack traces from other sources (Ruby, etc) (v0.3)
 
 ## Contribution
 
@@ -24,13 +25,14 @@ If you want to contrib, then do you thing, write tests, run `grunt test` ensure 
 
 ## Contributors
 
+- [Georg Tavonius](https://github.com/calamari)
 - [James Ide](https://github.com/ide)
 
 ## LICENSE
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Georg Tavonius
+Copyright (c) 2014-2015 Georg Tavonius
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
