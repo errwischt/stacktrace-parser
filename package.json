@@ -2,6 +2,7 @@
   "author": "Georg Tavonius <g.tavonius@gmail.com> (http://jaz-lounge.com)",
   "name": "stacktrace-parser",
   "description": "Parses every stack trace into a nicely formatted array of hashes.",
+  "keywords": ["errors", "stacktrace", "parser", "exceptions"],
   "version": "0.1.2",
   "engines": {
     "node": "0.10 - 2"
@@ -16,6 +17,14 @@
     "grunt-shell-spawn": "~0.3.0"
   },
   "homepage": "https://github.com/errwischt/stacktrace-parser",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/errwischt/stacktrace-parser"
+  },
+  "bugs": {
+    "url": "http://github.com/errwischt/stacktrace-parser/issues"
+  },
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/grunt test"
