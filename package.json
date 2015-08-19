@@ -4,9 +4,6 @@
   "description": "Parses every stack trace into a nicely formatted array of hashes.",
   "keywords": ["errors", "stacktrace", "parser", "exceptions"],
   "version": "0.1.2",
-  "engines": {
-    "node": "0.10 - 2"
-  },
   "dependencies": {},
   "devDependencies": {
     "mocha": "*",
