@@ -1,28 +1,41 @@
 {
   "author": "Georg Tavonius <g.tavonius@gmail.com> (http://jaz-lounge.com)",
+  "maintainers": [
+    {
+      "name" : "Andru Cherny",
+      "url" : "https://github.com/wirwolf"
+    }
+  ],
   "name": "stacktrace-parser",
   "description": "Parses every stack trace into a nicely formatted array of hashes.",
-  "keywords": ["errors", "stacktrace", "parser", "exceptions"],
+  "keywords": [
+    "errors",
+    "stacktrace",
+    "parser",
+    "exceptions"
+  ],
   "version": "0.1.4",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "*",
-    "should": "*",
     "expect.js": "*",
-    "grunt-cli": "~0.1.13",
     "grunt": "~0.4.2",
-    "grunt-shell-spawn": "~0.3.0"
+    "grunt-cli": "~0.1.13",
+    "grunt-shell-spawn": "~0.3.0",
+    "mocha": "*",
+    "nyc": "^13.1.0",
+    "should": "*"
   },
-  "homepage": "https://github.com/errwischt/stacktrace-parser",
+  "homepage": "https://github.com/SomeBlackMagic/stacktrace-parser",
   "repository": {
     "type": "git",
-    "url": "https://github.com/errwischt/stacktrace-parser"
+    "url": "https://github.com/SomeBlackMagic/stacktrace-parser"
   },
   "bugs": {
-    "url": "http://github.com/errwischt/stacktrace-parser/issues"
+    "url": "http://github.com/SomeBlackMagic/stacktrace-parser/issues"
   },
   "license": "MIT",
   "main": "index.js",
+  "typings": "./index.d.ts",
   "scripts": {
     "test": "./node_modules/.bin/grunt test"
   }
