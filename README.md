@@ -5,23 +5,25 @@ This parser parses a stack trace from any browser or Node.js and returns an arra
 ## Usage
 
 ``` JavaScript
+import * as stackTraceParser from 'stacktrace-parser';
+
 try {
   throw new Error('My error');
 } catch(ex) {
-  var lines = StackTraceParser.parse(ex.stack);
+  const stack = stackTraceParser.parse(ex.stack);
 }
 ```
 
-Every line contains four properties: `lineNumber`, `methodName`, `file` and `column` (if applicable).
+Every line contains four properties: `lineNumber`, `methodName`, `arguments`, `file` and `column` (if applicable).
 
 ## TODOs
 
-- allow to run in browser (v0.2)
 - parse stack traces from other sources (Ruby, etc) (v0.3)
 
 ## Contribution
 
-If you want to contrib, then do you thing, write tests, run `grunt test` ensure that everything is green , commit and make the pull request. Or just write an issue, or let's talk.
+If you want to contrib, then do you thing, write tests, run `npm run test` ensure that everything is green,
+commit and make the pull request. Or just write an issue, or let's talk.
 
 ## Contributors
 
