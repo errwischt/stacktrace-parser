@@ -1,3 +1,5 @@
+[![Build Status][build-image]][build-url] [![dependencies][deps-image]][deps-url] [![dev-dependencies][dev-deps-image]][dev-deps-url]
+
 # StackTrace-Parser
 
 This parser parses a stack trace from any browser or Node.js and returns an array of hashes representing a line.
@@ -30,27 +32,16 @@ commit and make the pull request. Or just write an issue, or let's talk.
 - [Georg Tavonius](https://github.com/calamari)
 - [James Ide](https://github.com/ide)
 - [Alexander Kotliarskyi](https://github.com/frantic)
+- [Dimitri Benin](https://github.com/BendingBender)
 
 ## LICENSE
 
-The MIT License (MIT)
+[The MIT License (MIT)](https://github.com/errwischt/stacktrace-parser/blob/master/LICENSE)
 
-Copyright (c) 2014-2015 Georg Tavonius
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+[build-image]: https://img.shields.io/travis/errwischt/stacktrace-parser/master.svg?style=flat-square
+[build-url]: https://travis-ci.org/errwischt/stacktrace-parser
+[deps-image]: https://img.shields.io/david/errwischt/stacktrace-parser.svg?style=flat-square
+[deps-url]: https://david-dm.org/errwischt/stacktrace-parser
+[dev-deps-image]: https://img.shields.io/david/dev/errwischt/stacktrace-parser.svg?style=flat-square
+[dev-deps-url]: https://david-dm.org/errwischt/stacktrace-parser?type=dev
