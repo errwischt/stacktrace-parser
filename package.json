@@ -5,11 +5,13 @@
   "main": "dist/stack-trace-parser.cjs.js",
   "module": "dist/stack-trace-parser.esm.js",
   "browser": "dist/stack-trace-parser.umd.js",
+  "types": "dist/stack-trace-parser.d.ts",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "rollup -c",
     "dev": "rollup -c -w",
-    "test": "mocha --compilers js:./mocha-babel-hook 'test/**/*.spec.js'",
+    "dist": "rollup -c && cpy --rename stack-trace-parser.d.ts src/index.d.ts dist/ && cpy --rename stack-trace-parser.test-d.ts src/index.test-d.ts dist/",
+    "pretest": "npm run dist",
+    "test": "mocha --require ./mocha-babel-hook 'test/**/*.spec.js' && tsd-check",
     "lint": "eslint --fix '{src,test}/**/*.js'"
   },
   "keywords": [
@@ -18,28 +20,38 @@
     "parser",
     "exceptions"
   ],
+  "engines": {
+    "node": ">=6"
+  },
   "version": "0.1.4",
   "files": [
-    "/dist",
+    "dist/stack-trace-parser.cjs.js",
+    "dist/stack-trace-parser.esm.js",
+    "dist/stack-trace-parser.umd.js",
+    "dist/stack-trace-parser.d.ts",
     "LICENSE",
     "README.md"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "type-fest": "^0.3.0"
+  },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
-    "eslint": "^5.12.1",
-    "eslint-config-prettier": "^4.0.0",
+    "cpy-cli": "^2.0.0",
+    "eslint": "^5.15.3",
+    "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
     "expect.js": "^0.3.1",
-    "mocha": "^5.2.0",
-    "prettier": "^1.16.1",
+    "mocha": "^6.0.2",
+    "prettier": "^1.16.4",
     "rimraf": "^2.6.3",
-    "rollup": "^1.1.2",
+    "rollup": "^1.6.0",
     "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^4.0.0"
+    "rollup-plugin-commonjs": "^9.2.1",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "tsd-check": "^0.5.0"
   },
   "homepage": "https://github.com/errwischt/stacktrace-parser",
   "repository": {
