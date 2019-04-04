@@ -14,4 +14,4 @@ export interface StackFrame {
  * @param stackString - The stack to parse, usually from `error.stack` property.
  * @returns The parsed stack frames.
  */
-export function parse(stackString): StackFrame[];
+export function parse(stackString: string): StackFrame[];
