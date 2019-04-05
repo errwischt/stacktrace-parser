@@ -10,6 +10,7 @@
     "clean": "rimraf dist",
     "dev": "rollup -c -w",
     "dist": "rollup -c && cpy --rename stack-trace-parser.d.ts src/index.d.ts dist/ && cpy --rename stack-trace-parser.test-d.ts src/index.test-d.ts dist/",
+    "prepublish": "npm run dist",
     "pretest": "npm run dist",
     "test": "mocha --require ./mocha-babel-hook 'test/**/*.spec.js' && tsd",
     "lint": "eslint --fix '{src,test}/**/*.js'"
