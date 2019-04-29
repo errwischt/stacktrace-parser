@@ -3,7 +3,62 @@ import * as stackTraceParser from '../src';
 import CapturedExceptions from './fixtures/captured-errors';
 
 describe('stackTraceParser', () => {
-  it('should parse Safari 6 error', () => {
+  it('parses JavaScriptCore errors', () => {
+    const stackFrames = stackTraceParser.parse(
+      CapturedExceptions.IOS_REACT_NATIVE_1.stack
+    );
+    expect(stackFrames.length).to.be(4);
+    expect(stackFrames).to.eql([
+      {
+        file: '/home/test/project/App.js',
+        methodName: '_exampleFunction',
+        arguments: [],
+        lineNumber: 125,
+        column: 13,
+      },
+      {
+        file: '/home/test/project/node_modules/dep/index.js',
+        methodName: '_depRunCallbacks',
+        arguments: [],
+        lineNumber: 77,
+        column: 45,
+      },
+      {
+        file:
+          '/home/test/project/node_modules/react-native/node_modules/promise/lib/core.js',
+        methodName: 'tryCallTwo',
+        arguments: [],
+        lineNumber: 45,
+        column: 5,
+      },
+      {
+        file:
+          '/home/test/project/node_modules/react-native/node_modules/promise/lib/core.js',
+        methodName: 'doResolve',
+        arguments: [],
+        lineNumber: 200,
+        column: 13,
+      },
+    ]);
+  });
+
+  it('parses very simple JavaScriptCore errors', () => {
+    const stackFrames = stackTraceParser.parse(
+      'global code@stack_traces/test:83:55'
+    );
+    expect(stackFrames.length).to.be(1);
+    expect(stackFrames).to.eql([
+      {
+        file: 'stack_traces/test',
+        methodName: 'global code',
+        arguments: [],
+        lineNumber: 83,
+        column: 55,
+      },
+    ]);
+  });
+
+  it('parses Safari 6 error', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.SAFARI_6.stack
     );
@@ -38,7 +93,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Safari 7 error', () => {
+  it('parses Safari 7 error', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.SAFARI_7.stack
     );
@@ -66,7 +121,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Safari 8 error', () => {
+  it('parses Safari 8 error', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.SAFARI_8.stack
     );
@@ -94,7 +149,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Safari 8 eval error', () => {
+  it('parses Safari 8 eval error', () => {
     // TODO: Take into account the line and column properties on the error object and use them for the first stack trace.
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.SAFARI_8_EVAL.stack
@@ -123,7 +178,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Firefox 3 error', () => {
+  it('parses Firefox 3 error', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.FIREFOX_3.stack
     );
@@ -179,7 +234,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Firefox 7 error', () => {
+  it('parses Firefox 7 error', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.FIREFOX_7.stack
     );
@@ -235,7 +290,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Firefox 14 error', () => {
+  it('parses Firefox 14 error', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.FIREFOX_14.stack
     );
@@ -263,7 +318,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Firefox 31 error', () => {
+  it('parses Firefox 31 error', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.FIREFOX_31.stack
     );
@@ -291,7 +346,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Firefox 44 ns exceptions', () => {
+  it('parses Firefox 44 ns exceptions', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.FIREFOX_44_NS_EXCEPTION.stack
     );
@@ -326,7 +381,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Chrome error with no location', () => {
+  it('parses Chrome error with no location', () => {
     const stackFrames = stackTraceParser.parse(
       'error\n at Array.forEach (native)'
     );
@@ -340,7 +395,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Chrome 15 error', () => {
+  it('parses Chrome 15 error', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.CHROME_15.stack
     );
@@ -375,7 +430,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Chrome 36 error with port numbers', () => {
+  it('parses Chrome 36 error with port numbers', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.CHROME_36.stack
     );
@@ -403,7 +458,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Chrome error with webpack URLs', () => {
+  it('parses Chrome error with webpack URLs', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.CHROME_XX_WEBPACK.stack
     );
@@ -438,7 +493,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse nested eval() from Chrome', () => {
+  it('parses nested eval() from Chrome', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.CHROME_48_EVAL.stack
     );
@@ -480,7 +535,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Chrome error with blob URLs', () => {
+  it('parses Chrome error with blob URLs', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.CHROME_48_BLOB.stack
     );
@@ -535,7 +590,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse IE 10 error', () => {
+  it('parses IE 10 error', () => {
     const stackFrames = stackTraceParser.parse(CapturedExceptions.IE_10.stack);
     expect(stackFrames.length).to.be(3);
     // TODO: func should be normalized
@@ -562,7 +617,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse IE 11 error', () => {
+  it('parses IE 11 error', () => {
     const stackFrames = stackTraceParser.parse(CapturedExceptions.IE_11.stack);
     expect(stackFrames.length).to.be(3);
     // TODO: func should be normalized
@@ -589,7 +644,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse IE 11 eval error', () => {
+  it('parses IE 11 eval error', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.IE_11_EVAL.stack
     );
@@ -617,7 +672,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Opera 25 error', () => {
+  it('parses Opera 25 error', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.OPERA_25.stack
     );
@@ -645,7 +700,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse PhantomJS 1.19 error', () => {
+  it('parses PhantomJS 1.19 error', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.PHANTOMJS_1_19.stack
     );
@@ -673,7 +728,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Firefox errors with resource: URLs', () => {
+  it('parses Firefox errors with resource: URLs', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.FIREFOX_50_RESOURCE_URL.stack
     );
@@ -687,7 +742,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse Firefox errors with eval URLs', () => {
+  it('parses Firefox errors with eval URLs', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.FIREFOX_43_EVAL.stack
     );
@@ -729,7 +784,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse React Native errors on Android', () => {
+  it('parses React Native errors on Android', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.ANDROID_REACT_NATIVE.stack
     );
@@ -752,7 +807,7 @@ describe('stackTraceParser', () => {
     });
   });
 
-  it('should parse React Native errors on Android Production', () => {
+  it('parses React Native errors on Android Production', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.ANDROID_REACT_NATIVE_PROD.stack
     );

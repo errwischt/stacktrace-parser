@@ -314,4 +314,14 @@ export default {
       'value@index.android.bundle:29:927\n' +
       '[native code]',
   },
+
+  IOS_REACT_NATIVE_1: {
+    message: 'Error: from issue #11',
+    stack: `
+      _exampleFunction@/home/test/project/App.js:125:13
+      _depRunCallbacks@/home/test/project/node_modules/dep/index.js:77:45
+      tryCallTwo@/home/test/project/node_modules/react-native/node_modules/promise/lib/core.js:45:5
+      doResolve@/home/test/project/node_modules/react-native/node_modules/promise/lib/core.js:200:13
+    `
+  }
 };

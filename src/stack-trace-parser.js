@@ -12,6 +12,7 @@ export function parse(stackString) {
       parseChrome(line) ||
       parseWinjs(line) ||
       parseGecko(line) ||
+      parseJSC(line) ||
       parseNode(line);
 
     if (parseResult) {
@@ -95,6 +96,24 @@ function parseGecko(line) {
     methodName: parts[1] || UNKNOWN_FUNCTION,
     arguments: parts[2] ? parts[2].split(',') : [],
     lineNumber: parts[4] ? +parts[4] : null,
+    column: parts[5] ? +parts[5] : null,
+  };
+}
+
+const javaScriptCoreRe = /^(?:\s*([^@]*)(?:\((.*?)\))?@)?(\S.*?):(\d+)(?::(\d+))?\s*$/i
+
+function parseJSC(line) {
+  const parts = javaScriptCoreRe.exec(line);
+
+  if (!parts) {
+    return null;
+  }
+
+  return {
+    file: parts[3],
+    methodName: parts[1] || UNKNOWN_FUNCTION,
+    arguments: [],
+    lineNumber: +parts[4],
     column: parts[5] ? +parts[5] : null,
   };
 }
