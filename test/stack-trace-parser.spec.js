@@ -42,6 +42,93 @@ describe('stackTraceParser', () => {
     ]);
   });
 
+  it('parses an error in react native', () => {
+    const stackFrames = stackTraceParser.parse(
+      CapturedExceptions.IOS_REACT_NATIVE_2.stack
+    );
+
+    expect(stackFrames.length).to.be(11);
+    expect(stackFrames).to.eql([
+      {
+        file: '33.js',
+        methodName: 's',
+        arguments: [],
+        lineNumber: 1,
+        column: 531,
+      },
+      {
+        file: '1959.js',
+        methodName: 'b',
+        arguments: [],
+        lineNumber: 1,
+        column: 1469,
+      },
+      {
+        file: '2932.js',
+        methodName: 'onSocketClose',
+        arguments: [],
+        lineNumber: 1,
+        column: 727,
+      },
+      {
+        file: '81.js',
+        methodName: 'value',
+        arguments: [],
+        lineNumber: 1,
+        column: 1505,
+      },
+      {
+        file: '102.js',
+        methodName: '<unknown>',
+        arguments: [],
+        lineNumber: 1,
+        column: 2956,
+      },
+      {
+        file: '89.js',
+        methodName: 'value',
+        arguments: [],
+        lineNumber: 1,
+        column: 1247,
+      },
+      {
+        file: '42.js',
+        methodName: 'value',
+        arguments: [],
+        lineNumber: 1,
+        column: 3311,
+      },
+      {
+        file: '42.js',
+        methodName: '<unknown>',
+        arguments: [],
+        lineNumber: 1,
+        column: 822,
+      },
+      {
+        file: '42.js',
+        methodName: 'value',
+        arguments: [],
+        lineNumber: 1,
+        column: 2565,
+      },
+      {
+        file: '42.js',
+        methodName: 'value',
+        arguments: [],
+        lineNumber: 1,
+        column: 794,
+      },
+      {
+        file: '[native code]',
+        methodName: 'value',
+        arguments: [],
+        lineNumber: null,
+        column: null,
+      },
+    ]);
+  });
+
   it('parses very simple JavaScriptCore errors', () => {
     const stackFrames = stackTraceParser.parse(
       'global code@stack_traces/test:83:55'

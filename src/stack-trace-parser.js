@@ -12,8 +12,8 @@ export function parse(stackString) {
       parseChrome(line) ||
       parseWinjs(line) ||
       parseGecko(line) ||
-      parseJSC(line) ||
-      parseNode(line);
+      parseNode(line) ||
+      parseJSC(line);
 
     if (parseResult) {
       stack.push(parseResult);
@@ -100,7 +100,7 @@ function parseGecko(line) {
   };
 }
 
-const javaScriptCoreRe = /^(?:\s*([^@]*)(?:\((.*?)\))?@)?(\S.*?):(\d+)(?::(\d+))?\s*$/i
+const javaScriptCoreRe = /^\s*(?:([^@]*)(?:\((.*?)\))?@)?(\S.*?):(\d+)(?::(\d+))?\s*$/i;
 
 function parseJSC(line) {
   const parts = javaScriptCoreRe.exec(line);

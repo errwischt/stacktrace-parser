@@ -322,6 +322,23 @@ export default {
       _depRunCallbacks@/home/test/project/node_modules/dep/index.js:77:45
       tryCallTwo@/home/test/project/node_modules/react-native/node_modules/promise/lib/core.js:45:5
       doResolve@/home/test/project/node_modules/react-native/node_modules/promise/lib/core.js:200:13
-    `
-  }
+    `,
+  },
+
+  IOS_REACT_NATIVE_2: {
+    message:
+      'Error: from issue https://github.com/facebook/react-native/issues/24382#issuecomment-489404970',
+    stack:
+      's@33.js:1:531\n' +
+      'b@1959.js:1:1469\n' +
+      'onSocketClose@2932.js:1:727\n' +
+      'value@81.js:1:1505\n' +
+      '102.js:1:2956\n' +
+      'value@89.js:1:1247\n' +
+      'value@42.js:1:3311\n' +
+      '42.js:1:822\n' +
+      'value@42.js:1:2565\n' +
+      'value@42.js:1:794\n' +
+      'value@[native code]',
+  },
 };
