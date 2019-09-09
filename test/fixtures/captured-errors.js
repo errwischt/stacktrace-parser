@@ -1,4 +1,12 @@
 export default {
+  NODE_12: {
+    message: 'Just an Exception',
+    name: 'Error',
+    stack:
+      'Error: Just an Exception\n' +
+      '    at promiseMe (/home/xyz/hack/asyncnode.js:11:9)\n' +
+      '    at async main (/home/xyz/hack/asyncnode.js:15:13)',
+  },
   OPERA_25: {
     message: "Cannot read property 'undef' of null",
     name: 'TypeError',
@@ -28,6 +36,15 @@ export default {
       '    at dumpExceptionError (http://localhost:8080/file.js:41:27)\n' +
       '    at HTMLButtonElement.onclick (http://localhost:8080/file.js:107:146)\n' +
       '    at I.e.fn.(anonymous function) [as index] (http://localhost:8080/file.js:10:3651)',
+  },
+
+  CHROME_76: {
+    message: 'BEEP BEEP',
+    name: 'Error',
+    stack:
+      'Error: BEEP BEEP\n' +
+      '    at bar (<anonymous>:8:9)\n' +
+      '    at async foo (<anonymous>:2:3)',
   },
 
   // can be generated when Webpack is built with { devtool: eval }

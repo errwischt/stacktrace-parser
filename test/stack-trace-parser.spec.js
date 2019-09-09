@@ -545,6 +545,27 @@ describe('stackTraceParser', () => {
     });
   });
 
+  it('parses Chrome 76 error with async support', () => {
+    const stackFrames = stackTraceParser.parse(
+      CapturedExceptions.CHROME_76.stack
+    );
+    expect(stackFrames.length).to.be(2);
+    expect(stackFrames[0]).to.eql({
+      file: '<anonymous>',
+      methodName: 'bar',
+      arguments: [],
+      lineNumber: 8,
+      column: 9,
+    });
+    expect(stackFrames[1]).to.eql({
+      file: '<anonymous>',
+      methodName: 'async foo',
+      arguments: [],
+      lineNumber: 2,
+      column: 3,
+    });
+  });
+
   it('parses Chrome error with webpack URLs', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.CHROME_XX_WEBPACK.stack
@@ -919,6 +940,27 @@ describe('stackTraceParser', () => {
       arguments: [],
       lineNumber: null,
       column: null,
+    });
+  });
+
+  it('parses node.js async errors available with version 12', () => {
+    const stackFrames = stackTraceParser.parse(
+      CapturedExceptions.NODE_12.stack
+    );
+    expect(stackFrames.length).to.be(2);
+    expect(stackFrames[0]).to.eql({
+      file: '/home/xyz/hack/asyncnode.js',
+      methodName: 'promiseMe',
+      arguments: [],
+      lineNumber: 11,
+      column: 9,
+    });
+    expect(stackFrames[1]).to.eql({
+      file: '/home/xyz/hack/asyncnode.js',
+      methodName: 'async main',
+      arguments: [],
+      lineNumber: 15,
+      column: 13,
     });
   });
 
