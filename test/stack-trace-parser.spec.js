@@ -964,11 +964,74 @@ describe('stackTraceParser', () => {
     });
   });
 
+  it('parses node.js errors with <anonymous> calls as well', () => {
+    const stackFrames = stackTraceParser.parse(
+      CapturedExceptions.NODE_ANONYM.stack
+    );
+    // console.log(stackFrames);
+    expect(stackFrames.length).to.be(9);
+    expect(stackFrames[0]).to.eql({
+      file: 'C:\\projects\\spect\\src\\index.js',
+      methodName: 'Spect.get',
+      arguments: [],
+      lineNumber: 161,
+      column: 26,
+    });
+    expect(stackFrames[2]).to.eql({
+      file: 'C:\\projects\\spect\\src\\index.js',
+      methodName: '(anonymous function).then',
+      arguments: [],
+      lineNumber: 165,
+      column: 33,
+    });
+    expect(stackFrames[4]).to.eql({
+      file: 'C:\\projects\\spect\\node_modules\\esm\\esm.js',
+      methodName: '<unknown>',
+      arguments: [],
+      lineNumber: 1,
+      column: 34535,
+    });
+    expect(stackFrames[6]).to.eql({
+      file: 'C:\\projects\\spect\\node_modules\\esm\\esm.js',
+      methodName: 'process.<anonymous>',
+      arguments: [],
+      lineNumber: 1,
+      column: 34506,
+    });
+  });
+
   const data = {
+    'Anonymous sources': [
+      {
+        from: `x
+          at new <anonymous> (http://www.example.com/test.js:2:1
+          at <anonymous>:1:2`,
+        to: [
+          {
+            file: 'http://www.example.com/test.js',
+            methodName: 'new <anonymous>',
+            arguments: [],
+            lineNumber: 2,
+            column: 1,
+          },
+          {
+            file: '<anonymous>',
+            methodName: '<unknown>',
+            arguments: [],
+            lineNumber: 1,
+            column: 2,
+          },
+        ],
+      },
+    ],
     'Node.js': [
       {
-        from:
-          'ReferenceError: test is not defined\n    at repl:1:2\n    at REPLServer.self.eval (repl.js:110:21)\n    at Interface.<anonymous> (repl.js:239:12)\n    at Interface.EventEmitter.emit (events.js:95:17)\n    at emitKey (readline.js:1095:12)',
+        from: `ReferenceError: test is not defined
+          at repl:1:2
+          at REPLServer.self.eval (repl.js:110:21)
+          at Interface.<anonymous> (repl.js:239:12)
+          at Interface.EventEmitter.emit (events.js:95:17)
+          at emitKey (readline.js:1095:12)`,
         to: [
           {
             file: 'repl',
@@ -1008,8 +1071,9 @@ describe('stackTraceParser', () => {
         ],
       },
       {
-        from:
-          'ReferenceError: breakDown is not defined\n    at null._onTimeout (repl:1:25)\n    at Timer.listOnTimeout [as ontimeout] (timers.js:110:15)',
+        from: `ReferenceError: breakDown is not defined
+          at null._onTimeout (repl:1:25)
+          at Timer.listOnTimeout [as ontimeout] (timers.js:110:15)`,
         to: [
           {
             file: 'repl',
@@ -1031,8 +1095,17 @@ describe('stackTraceParser', () => {
     'io.js': [
       // io.js 2.4.0
       {
-        from:
-          'ReferenceError: test is not defined\n    at repl:1:1\n    at REPLServer.defaultEval (repl.js:154:27)\n    at bound (domain.js:254:14)\n    at REPLServer.runBound [as eval] (domain.js:267:12)\n    at REPLServer.<anonymous> (repl.js:308:12)\n    at emitOne (events.js:77:13)\n    at REPLServer.emit (events.js:169:7)\n    at REPLServer.Interface._onLine (readline.js:210:10)\n    at REPLServer.Interface._line (readline.js:549:8)\n    at REPLServer.Interface._ttyWrite (readline.js:826:14)',
+        from: `ReferenceError: test is not defined
+          at repl:1:1
+          at REPLServer.defaultEval (repl.js:154:27)
+          at bound (domain.js:254:14)
+          at REPLServer.runBound [as eval] (domain.js:267:12)
+          at REPLServer.<anonymous> (repl.js:308:12)
+          at emitOne (events.js:77:13)
+          at REPLServer.emit (events.js:169:7)
+          at REPLServer.Interface._onLine (readline.js:210:10)
+          at REPLServer.Interface._line (readline.js:549:8)
+          at REPLServer.Interface._ttyWrite (readline.js:826:14)`,
         to: [
           {
             file: 'repl',

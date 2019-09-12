@@ -7,6 +7,21 @@ export default {
       '    at promiseMe (/home/xyz/hack/asyncnode.js:11:9)\n' +
       '    at async main (/home/xyz/hack/asyncnode.js:15:13)',
   },
+  NODE_ANONYM: {
+    message: '',
+    name: 'Error',
+    stack: `Error
+    at Spect.get (C:\\projects\\spect\\src\\index.js:161:26)
+    at Object.get (C:\\projects\\spect\\src\\index.js:43:36)
+    at <anonymous>
+    at (anonymous function).then (C:\\projects\\spect\\src\\index.js:165:33)
+    at process.runNextTicks [as _tickCallback] (internal/process/task_queues.js:52:5)
+    at C:\\projects\\spect\\node_modules\\esm\\esm.js:1:34535
+    at C:\\projects\\spect\\node_modules\\esm\\esm.js:1:34176
+    at process.<anonymous> (C:\\projects\\spect\\node_modules\\esm\\esm.js:1:34506)
+    at Function.<anonymous> (C:\\projects\\spect\\node_modules\\esm\\esm.js:1:296856)
+    at Function.<anonymous> (C:\\projects\\spect\\node_modules\\esm\\esm.js:1:296555)`,
+  },
   OPERA_25: {
     message: "Cannot read property 'undef' of null",
     name: 'TypeError',
