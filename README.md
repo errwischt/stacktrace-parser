@@ -2,11 +2,19 @@
 
 # StackTrace-Parser
 
-This parser parses a stack trace from any browser or Node.js and returns an array of hashes representing a line.
+This parser parses a stack trace from any browser or Node.js and returns an array of hashes each representing a line.
+
+The goal here is to support every browser even old Internet Explorer stack traces will work.
+
+## Install
+
+```bashv0.1
+npm install stacktrace-parser
+```
 
 ## Usage
 
-``` JavaScript
+```JavaScript
 import * as stackTraceParser from 'stacktrace-parser';
 
 try {
@@ -16,7 +24,7 @@ try {
 }
 ```
 
-Every line contains four properties: `lineNumber`, `methodName`, `arguments`, `file` and `column` (if applicable).
+Every line contains five properties: `lineNumber`, `methodName`, `arguments`, `file` and `column` (if applicable).
 
 ## TODOs
 
@@ -37,7 +45,6 @@ commit and make the pull request. Or just write an issue, or let's talk.
 ## LICENSE
 
 [The MIT License (MIT)](https://github.com/errwischt/stacktrace-parser/blob/master/LICENSE)
-
 
 [build-image]: https://img.shields.io/travis/errwischt/stacktrace-parser/master.svg?style=flat-square
 [build-url]: https://travis-ci.org/errwischt/stacktrace-parser
