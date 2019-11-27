@@ -3,6 +3,77 @@ import * as stackTraceParser from '../src';
 import CapturedExceptions from './fixtures/captured-errors';
 
 describe('stackTraceParser', () => {
+  it('parses node error with space in path', () => {
+    const stackFrames = stackTraceParser.parse(
+      CapturedExceptions.NODE_SPACE.stack
+    );
+    expect(stackFrames.length).to.be(9);
+    expect(stackFrames).to.eql([
+      {
+        file: 'C:\\project files\\spect\\src\\index.js',
+        methodName: 'Spect.get',
+        arguments: [],
+        lineNumber: 161,
+        column: 26,
+      },
+      {
+        file: 'C:\\project files\\spect\\src\\index.js',
+        methodName: 'Object.get',
+        arguments: [],
+        lineNumber: 43,
+        column: 36,
+      },
+      {
+        file: 'C:\\project files\\spect\\src\\index.js',
+        methodName: '(anonymous function).then',
+        arguments: [],
+        lineNumber: 165,
+        column: 33,
+      },
+      {
+        file: 'internal/process/task_queues.js',
+        methodName: 'process.runNextTicks [as _tickCallback]',
+        arguments: [],
+        lineNumber: 52,
+        column: 5,
+      },
+      {
+        file: 'C:\\project files\\spect\\node_modules\\esm\\esm.js',
+        methodName: '<unknown>',
+        arguments: [],
+        lineNumber: 1,
+        column: 34535,
+      },
+      {
+        file: 'C:\\project files\\spect\\node_modules\\esm\\esm.js',
+        methodName: '<unknown>',
+        arguments: [],
+        lineNumber: 1,
+        column: 34176,
+      },
+      {
+        file: 'C:\\project files\\spect\\node_modules\\esm\\esm.js',
+        methodName: 'process.<anonymous>',
+        arguments: [],
+        lineNumber: 1,
+        column: 34506,
+      },
+      {
+        file: 'C:\\project files\\spect\\node_modules\\esm\\esm.js',
+        methodName: 'Function.<anonymous>',
+        arguments: [],
+        lineNumber: 1,
+        column: 296856,
+      },
+      {
+        file: 'C:\\project files\\spect\\node_modules\\esm\\esm.js',
+        methodName: 'Function.<anonymous>',
+        arguments: [],
+        lineNumber: 1,
+        column: 296555,
+      },
+    ]);
+  });
   it('parses JavaScriptCore errors', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.IOS_REACT_NATIVE_1.stack
