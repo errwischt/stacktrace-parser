@@ -118,7 +118,7 @@ function parseJSC(line) {
   };
 }
 
-const nodeRe = /^\s*at (?:((?:\[object object\])?.+(?: \[as \S+\])?) )?\(?(.*?):(\d+)(?::(\d+))?\)?\s*$/i;
+const nodeRe = /^\s*at (?:((?:\[object object\])?[^\\/]+(?: \[as \S+\])?) )?\(?(.*?):(\d+)(?::(\d+))?\)?\s*$/i;
 
 function parseNode(line) {
   const parts = nodeRe.exec(line);
