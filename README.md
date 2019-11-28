@@ -41,6 +41,7 @@ commit and make the pull request. Or just write an issue, or let's talk.
 - [James Ide](https://github.com/ide)
 - [Alexander Kotliarskyi](https://github.com/frantic)
 - [Dimitri Benin](https://github.com/BendingBender)
+- [Tony Brix](https://github.com/UziTech)
 
 ## LICENSE
 
