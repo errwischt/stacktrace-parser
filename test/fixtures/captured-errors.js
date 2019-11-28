@@ -22,6 +22,23 @@ export default {
     at Function.<anonymous> (C:\\projects\\spect\\node_modules\\esm\\esm.js:1:296856)
     at Function.<anonymous> (C:\\projects\\spect\\node_modules\\esm\\esm.js:1:296555)`,
   },
+
+  NODE_SPACE: {
+    message: '',
+    name: 'Error',
+    stack: `Error
+    at Spect.get (C:\\project files\\spect\\src\\index.js:161:26)
+    at Object.get (C:\\project files\\spect\\src\\index.js:43:36)
+    at <anonymous>
+    at (anonymous function).then (C:\\project files\\spect\\src\\index.js:165:33)
+    at process.runNextTicks [as _tickCallback] (internal/process/task_queues.js:52:5)
+    at C:\\project files\\spect\\node_modules\\esm\\esm.js:1:34535
+    at C:\\project files\\spect\\node_modules\\esm\\esm.js:1:34176
+    at process.<anonymous> (C:\\project files\\spect\\node_modules\\esm\\esm.js:1:34506)
+    at Function.<anonymous> (C:\\project files\\spect\\node_modules\\esm\\esm.js:1:296856)
+    at Function.<anonymous> (C:\\project files\\spect\\node_modules\\esm\\esm.js:1:296555)`,
+  },
+
   OPERA_25: {
     message: "Cannot read property 'undef' of null",
     name: 'TypeError',
