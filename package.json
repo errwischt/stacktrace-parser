@@ -4,7 +4,6 @@
   "description": "Parses every stack trace into a nicely formatted array of hashes.",
   "main": "dist/stack-trace-parser.cjs.js",
   "module": "dist/stack-trace-parser.esm.js",
-  "browser": "dist/stack-trace-parser.umd.js",
   "types": "dist/stack-trace-parser.d.ts",
   "scripts": {
     "clean": "rimraf dist",
