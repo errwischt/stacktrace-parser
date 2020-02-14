@@ -23,11 +23,10 @@
   "engines": {
     "node": ">=6"
   },
-  "version": "0.1.8",
+  "version": "0.1.9",
   "files": [
     "dist/stack-trace-parser.cjs.js",
     "dist/stack-trace-parser.esm.js",
-    "dist/stack-trace-parser.umd.js",
     "dist/stack-trace-parser.d.ts",
     "LICENSE",
     "README.md"
