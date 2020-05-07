@@ -641,7 +641,7 @@ describe('stackTraceParser', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.CHROME_XX_WEBPACK.stack
     );
-    expect(stackFrames.length).to.be(4);
+    expect(stackFrames.length).to.be(5);
     expect(stackFrames[0]).to.eql({
       file: 'webpack:///./src/components/test/test.jsx?',
       methodName: 'TESTTESTTEST.eval',
@@ -669,6 +669,13 @@ describe('stackTraceParser', () => {
       arguments: [],
       lineNumber: 44,
       column: 30,
+    });
+    expect(stackFrames[4]).to.eql({
+      file: 'C:\\root\\server\\development\\pages\\index.js',
+      methodName: 'Module../pages/index.js',
+      arguments: [],
+      lineNumber: 182,
+      column: 7,
     });
   });
 
