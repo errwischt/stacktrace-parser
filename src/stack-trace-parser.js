@@ -23,7 +23,7 @@ export function parse(stackString) {
   }, []);
 }
 
-const chromeRe = /^\s*at (.*?) ?\(((?:file|https?|blob|chrome-extension|native|eval|webpack|<anonymous>|\/).*?)(?::(\d+))?(?::(\d+))?\)?\s*$/i;
+const chromeRe = /^\s*at (.*?) ?\(((?:file|https?|blob|chrome-extension|native|eval|webpack|<anonymous>|\/|[a-z]:\\|\\\\).*?)(?::(\d+))?(?::(\d+))?\)?\s*$/i;
 const chromeEvalRe = /\((\S*)(?::(\d+))(?::(\d+))\)/;
 
 function parseChrome(line) {
