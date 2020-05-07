@@ -79,16 +79,19 @@ export default {
       '    at async foo (<anonymous>:2:3)',
   },
 
-  // can be generated when Webpack is built with { devtool: eval }
+  // can be generated when Webpack is built with source maps
   CHROME_XX_WEBPACK: {
     message: "Cannot read property 'error' of undefined",
     name: 'TypeError',
     stack:
       "TypeError: Cannot read property 'error' of undefined\n" +
+      // { devtool: eval }:
       '   at TESTTESTTEST.eval(webpack:///./src/components/test/test.jsx?:295:108)\n' +
       '   at TESTTESTTEST.render(webpack:///./src/components/test/test.jsx?:272:32)\n' +
       '   at TESTTESTTEST.tryRender(webpack:///./~/react-transform-catch-errors/lib/index.js?:34:31)\n' +
-      '   at TESTTESTTEST.proxiedMethod(webpack:///./~/react-proxy/modules/createPrototypeProxy.js?:44:30)',
+      '   at TESTTESTTEST.proxiedMethod(webpack:///./~/react-proxy/modules/createPrototypeProxy.js?:44:30)\n' +
+      // { devtool: source-map }:
+      '   at Module../pages/index.js (C:\\root\\server\\development\\pages\\index.js:182:7)',
   },
 
   FIREFOX_3: {
