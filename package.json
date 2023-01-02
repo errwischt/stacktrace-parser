@@ -50,7 +50,7 @@
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "tsd": "^0.7.4"
+    "tsd": "^0.25.0"
   },
   "homepage": "https://github.com/errwischt/stacktrace-parser",
   "repository": {
