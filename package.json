@@ -23,7 +23,7 @@
   "engines": {
     "node": ">=6"
   },
-  "version": "0.1.10",
+  "version": "0.1.11",
   "files": [
     "dist/stack-trace-parser.cjs.js",
     "dist/stack-trace-parser.esm.js",
