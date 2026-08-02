@@ -71,7 +71,7 @@ function parseWinjs(line) {
   };
 }
 
-const geckoRe = /^\s*(.*?)(?:\((.*?)\))?(?:^|@)((?:file|https?|blob|chrome|webpack|rsc|resource|\[native).*?|[^@]*bundle)(?::(\d+))?(?::(\d+))?\s*$/i;
+const geckoRe = /^(.*?)(?:\((.*?)\))?(?:^|@)((?:file|https?|blob|chrome|webpack|rsc|resource|\[native).*?|[^@]*bundle)(?::(\d+))?(?::(\d+))?\s*$/i;
 const geckoEvalRe = /(\S+) line (\d+)(?: > eval line \d+)* > eval/i;
 
 function parseGecko(line) {
@@ -93,14 +93,14 @@ function parseGecko(line) {
 
   return {
     file: parts[3],
-    methodName: parts[1] || UNKNOWN_FUNCTION,
+    methodName: (parts[1] && parts[1].trim()) || UNKNOWN_FUNCTION,
     arguments: parts[2] ? parts[2].split(',') : [],
     lineNumber: parts[4] ? +parts[4] : null,
     column: parts[5] ? +parts[5] : null,
   };
 }
 
-const javaScriptCoreRe = /^\s*(?:([^@]*)(?:\((.*?)\))?@)?(\S.*?):(\d+)(?::(\d+))?\s*$/i;
+const javaScriptCoreRe = /^(?:([^@]*)(?:\((.*?)\))?@)?(\S.*?):(\d+)(?::(\d+))?\s*$/i;
 
 function parseJSC(line) {
   const parts = javaScriptCoreRe.exec(line);
@@ -111,7 +111,7 @@ function parseJSC(line) {
 
   return {
     file: parts[3],
-    methodName: parts[1] || UNKNOWN_FUNCTION,
+    methodName: (parts[1] && parts[1].trim()) || UNKNOWN_FUNCTION,
     arguments: [],
     lineNumber: +parts[4],
     column: parts[5] ? +parts[5] : null,

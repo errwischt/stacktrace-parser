@@ -3,6 +3,30 @@ import * as stackTraceParser from '../src';
 import CapturedExceptions from './fixtures/captured-errors';
 
 describe('stackTraceParser', () => {
+  // `geckoRe` and `javaScriptCoreRe` began with `^\\s*` followed by a group that
+  // also matches whitespace, so a leading run of spaces could be split between
+  // them in n ways and parsing a non-matching line was quadratic in its length.
+  // A 30k-character run took over three seconds; err.stack embeds the message,
+  // so attacker-influenced text reaches this directly.
+  it('parses a long leading whitespace run in linear time', function () {
+    this.timeout(5000);
+
+    const time = (n) => {
+      const line = ' '.repeat(n) + 'x';
+      const start = Date.now();
+      stackTraceParser.parse(line);
+      return Date.now() - start;
+    };
+
+    time(4000); // warm up
+    const small = time(8000);
+    const large = time(32000);
+
+    // Quadratic would be ~16x for a 4x input; allow generous headroom for a
+    // slow or noisy CI machine while still failing on the old behaviour.
+    expect(large).to.be.lessThan(Math.max(small, 1) * 8 + 100);
+  });
+
   it('parses node error with space in path', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.NODE_SPACE.stack
