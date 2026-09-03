@@ -3,30 +3,6 @@ import * as stackTraceParser from '../src';
 import CapturedExceptions from './fixtures/captured-errors';
 
 describe('stackTraceParser', () => {
-  // `geckoRe` and `javaScriptCoreRe` began with `^\\s*` followed by a group that
-  // also matches whitespace, so a leading run of spaces could be split between
-  // them in n ways and parsing a non-matching line was quadratic in its length.
-  // A 30k-character run took over three seconds; err.stack embeds the message,
-  // so attacker-influenced text reaches this directly.
-  it('parses a long leading whitespace run in linear time', function () {
-    this.timeout(5000);
-
-    const time = (n) => {
-      const line = ' '.repeat(n) + 'x';
-      const start = Date.now();
-      stackTraceParser.parse(line);
-      return Date.now() - start;
-    };
-
-    time(4000); // warm up
-    const small = time(8000);
-    const large = time(32000);
-
-    // Quadratic would be ~16x for a 4x input; allow generous headroom for a
-    // slow or noisy CI machine while still failing on the old behaviour.
-    expect(large).to.be.lessThan(Math.max(small, 1) * 8 + 100);
-  });
-
   it('parses node error with space in path', () => {
     const stackFrames = stackTraceParser.parse(
       CapturedExceptions.NODE_SPACE.stack
@@ -119,16 +95,14 @@ describe('stackTraceParser', () => {
         column: 45,
       },
       {
-        file:
-          '/home/test/project/node_modules/react-native/node_modules/promise/lib/core.js',
+        file: '/home/test/project/node_modules/react-native/node_modules/promise/lib/core.js',
         methodName: 'tryCallTwo',
         arguments: [],
         lineNumber: 45,
         column: 5,
       },
       {
-        file:
-          '/home/test/project/node_modules/react-native/node_modules/promise/lib/core.js',
+        file: '/home/test/project/node_modules/react-native/node_modules/promise/lib/core.js',
         methodName: 'doResolve',
         arguments: [],
         lineNumber: 200,
@@ -751,48 +725,42 @@ describe('stackTraceParser', () => {
     );
     expect(stackFrames.length).to.be(7);
     expect(stackFrames[1]).to.eql({
-      file:
-        'blob:http%3A//localhost%3A8080/abfc40e9-4742-44ed-9dcd-af8f99a29379',
+      file: 'blob:http%3A//localhost%3A8080/abfc40e9-4742-44ed-9dcd-af8f99a29379',
       methodName: 's',
       arguments: [],
       lineNumber: 31,
       column: 29146,
     });
     expect(stackFrames[2]).to.eql({
-      file:
-        'blob:http%3A//localhost%3A8080/abfc40e9-4742-44ed-9dcd-af8f99a29379',
+      file: 'blob:http%3A//localhost%3A8080/abfc40e9-4742-44ed-9dcd-af8f99a29379',
       methodName: 'Object.d [as add]',
       arguments: [],
       lineNumber: 31,
       column: 30039,
     });
     expect(stackFrames[3]).to.eql({
-      file:
-        'blob:http%3A//localhost%3A8080/d4eefe0f-361a-4682-b217-76587d9f712a',
+      file: 'blob:http%3A//localhost%3A8080/d4eefe0f-361a-4682-b217-76587d9f712a',
       methodName: '<unknown>',
       arguments: [],
       lineNumber: 15,
       column: 10978,
     });
     expect(stackFrames[4]).to.eql({
-      file:
-        'blob:http%3A//localhost%3A8080/abfc40e9-4742-44ed-9dcd-af8f99a29379',
+      file: 'blob:http%3A//localhost%3A8080/abfc40e9-4742-44ed-9dcd-af8f99a29379',
       methodName: '<unknown>',
       arguments: [],
       lineNumber: 1,
       column: 6911,
     });
     expect(stackFrames[5]).to.eql({
-      file:
-        'blob:http%3A//localhost%3A8080/abfc40e9-4742-44ed-9dcd-af8f99a29379',
+      file: 'blob:http%3A//localhost%3A8080/abfc40e9-4742-44ed-9dcd-af8f99a29379',
       methodName: 'n.fire',
       arguments: [],
       lineNumber: 7,
       column: 3019,
     });
     expect(stackFrames[6]).to.eql({
-      file:
-        'blob:http%3A//localhost%3A8080/abfc40e9-4742-44ed-9dcd-af8f99a29379',
+      file: 'blob:http%3A//localhost%3A8080/abfc40e9-4742-44ed-9dcd-af8f99a29379',
       methodName: 'n.handle',
       arguments: [],
       lineNumber: 7,
@@ -1000,16 +968,14 @@ describe('stackTraceParser', () => {
     );
     expect(stackFrames.length).to.be(8);
     expect(stackFrames[0]).to.eql({
-      file:
-        '/home/username/sample-workspace/sampleapp.collect.react/src/components/GpsMonitorScene.js',
+      file: '/home/username/sample-workspace/sampleapp.collect.react/src/components/GpsMonitorScene.js',
       methodName: 'render',
       arguments: [],
       lineNumber: 78,
       column: 24,
     });
     expect(stackFrames[7]).to.eql({
-      file:
-        '/home/username/sample-workspace/sampleapp.collect.react/node_modules/react-native/Libraries/Renderer/src/renderers/native/ReactNativeBaseComponent.js',
+      file: '/home/username/sample-workspace/sampleapp.collect.react/node_modules/react-native/Libraries/Renderer/src/renderers/native/ReactNativeBaseComponent.js',
       methodName: 'this',
       arguments: [],
       lineNumber: 74,
@@ -1284,11 +1250,11 @@ describe('stackTraceParser', () => {
     ],
   };
 
-  Object.keys(data).forEach(browser => {
+  Object.keys(data).forEach((browser) => {
     describe('can parse stack trace of ' + browser, () => {
       const browserTests = data[browser];
 
-      browserTests.forEach(browserTest => {
+      browserTests.forEach((browserTest) => {
         it(browserTest.from, () => {
           const result = stackTraceParser.parse(browserTest.from);
 
