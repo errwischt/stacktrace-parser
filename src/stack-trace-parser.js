@@ -23,7 +23,8 @@ export function parse(stackString) {
   }, []);
 }
 
-const chromeRe = /^\s*at (.*?) ?\(((?:file|https?|blob|chrome-extension|native|eval|webpack|rsc|<anonymous>|\/|[a-z]:\\|\\\\).*?)(?::(\d+))?(?::(\d+))?\)?\s*$/i;
+const chromeRe =
+  /^\s*at (.*?) ?\(((?:file|https?|blob|chrome-extension|native|eval|webpack|rsc|<anonymous>|\/|[a-z]:\\|\\\\).*?)(?::(\d+))?(?::(\d+))?\)?\s*$/i;
 const chromeEvalRe = /\((\S*)(?::(\d+))(?::(\d+))\)/;
 
 function parseChrome(line) {
@@ -53,7 +54,8 @@ function parseChrome(line) {
   };
 }
 
-const winjsRe = /^\s*at (?:((?:\[object object\])?.+) )?\(?((?:file|ms-appx|https?|webpack|rsc|blob):.*?):(\d+)(?::(\d+))?\)?\s*$/i;
+const winjsRe =
+  /^\s*at (?:((?:\[object object\])?.+) )?\(?((?:file|ms-appx|https?|webpack|rsc|blob):.*?):(\d+)(?::(\d+))?\)?\s*$/i;
 
 function parseWinjs(line) {
   const parts = winjsRe.exec(line);
@@ -71,7 +73,8 @@ function parseWinjs(line) {
   };
 }
 
-const geckoRe = /^(.*?)(?:\((.*?)\))?(?:^|@)((?:file|https?|blob|chrome|webpack|rsc|resource|\[native).*?|[^@]*bundle)(?::(\d+))?(?::(\d+))?\s*$/i;
+const geckoRe =
+  /^(.*?)(?:\((.*?)\))?(?:^|@)((?:file|https?|blob|chrome|webpack|rsc|resource|\[native).*?|[^@]*bundle)(?::(\d+))?(?::(\d+))?\s*$/i;
 const geckoEvalRe = /(\S+) line (\d+)(?: > eval line \d+)* > eval/i;
 
 function parseGecko(line) {
@@ -100,7 +103,8 @@ function parseGecko(line) {
   };
 }
 
-const javaScriptCoreRe = /^(?:([^@]*)(?:\((.*?)\))?@)?(\S.*?):(\d+)(?::(\d+))?\s*$/i;
+const javaScriptCoreRe =
+  /^(?:([^@]*)(?:\((.*?)\))?@)?(\S.*?):(\d+)(?::(\d+))?\s*$/i;
 
 function parseJSC(line) {
   const parts = javaScriptCoreRe.exec(line);
@@ -118,7 +122,8 @@ function parseJSC(line) {
   };
 }
 
-const nodeRe = /^\s*at (?:((?:\[object object\])?[^\\/]+(?: \[as \S+\])?) )?\(?(.*?):(\d+)(?::(\d+))?\)?\s*$/i;
+const nodeRe =
+  /^\s*at (?:((?:\[object object\])?[^\\/]+(?: \[as \S+\])?) )?\(?(.*?):(\d+)(?::(\d+))?\)?\s*$/i;
 
 function parseNode(line) {
   const parts = nodeRe.exec(line);

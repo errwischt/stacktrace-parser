@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   NODE_12: {
     message: 'Just an Exception',
     name: 'Error',
